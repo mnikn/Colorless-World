@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://c17p27xqc3hd5"]
+
+[ext_resource type="Texture2D" uid="uid://cfvin71mje1yt" path="res://assets/ui_mock.png" id="1_5tx8i"]
+[ext_resource type="Shader" path="res://src/levels/grayscale.gdshader" id="2_cg1ee"]
+[ext_resource type="Script" path="res://src/levels/mock-level.gd" id="2_r84o7"]
+[ext_resource type="Texture2D" uid="uid://dnshaaxxw42mq" path="res://assets/character.png" id="2_yyqpb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fddps"]
+shader = ExtResource("2_cg1ee")
+shader_parameter/filter_coff = Vector3(1, 1, 1)
+
+[node name="MockLevel" type="Node2D"]
+material = SubResource("ShaderMaterial_fddps")
+script = ExtResource("2_r84o7")
+
+[node name="Bg" type="TextureRect" parent="."]
+use_parent_material = true
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_5tx8i")
+metadata/_edit_lock_ = true
+
+[node name="character" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(125, 610)
+scale = Vector2(4, 4)
+texture = ExtResource("2_yyqpb")
