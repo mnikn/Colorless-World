@@ -18,6 +18,7 @@ layer_0/tile_data = PackedInt32Array(1376284, 196608, 2, 1376283, 131072, 2, 137
 collision_layer = 256
 monitorable = false
 script = ExtResource("2_0o237")
+target_scene = "res://src/levels/level-9.tscn"
 
 [node name="Collision" type="CollisionShape2D" parent="Exits/Exit" index="0"]
 position = Vector2(1280, 397)

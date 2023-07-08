@@ -1,6 +1,6 @@
 extends Node2D
 
-const intial_scene = "res://src/levels/level-6.tscn"
+const intial_scene = "res://src/levels/level-12.tscn"
 var changing_color = false
 
 func _ready():
