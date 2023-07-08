@@ -28,7 +28,7 @@ static func write_json_file(path: String, data: Dictionary, password = ""):
 	file.store_string(content)
 	return content
 
-static func exits_json_file(path: String):
+static func exits_file(path: String):
 	return FileAccess.file_exists(path)
 
 static func delete_file(path: String):

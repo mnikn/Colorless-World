@@ -10,6 +10,8 @@ var current_animation_name
 var animation_id = 0
 
 func set_animation_file(file):
+	if not FileUtils.exits_file(file):
+		return
 	animation_file = file
 	if len(file) > 0:
 		self.animation_data = ResourceManager.load_json(file)

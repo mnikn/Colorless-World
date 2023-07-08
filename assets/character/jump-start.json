@@ -1,0 +1,19 @@
+{
+  "frames": [
+    {
+      "frame": 1,
+      "duration": 500,
+      "collision": {
+        "x": 5,
+        "y": 3,
+        "width": 8,
+        "height": 15,
+        "shapeType": "retangle"
+      }
+    }
+  ],
+  "animation": {
+    "loop": false,
+    "img": "D:\\game_projects\\colorless-world\\assets\\character\\jump-start.png"
+  }
+}

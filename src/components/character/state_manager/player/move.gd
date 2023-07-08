@@ -61,6 +61,7 @@ func do_process(delta):
 		velocity.y = 0
 		
 		if Input.is_action_just_pressed("player_jump"):
+			self.host.play_no_direction_animation("jump_start")
 			is_jumping = true
 			jump_start_velocity = map_range(Input.get_action_strength("player_jump"), 0, 1, MIN_JUMP_FORCE, MAX_JUMP_FORCE)
 			velocity.y = jump_start_velocity
@@ -109,8 +110,14 @@ func do_process(delta):
 	self.host.velocity = velocity
 	self.host.move_and_slide()
 	
-	if not self.is_jumping and not self.is_dashing:
+	if not self.is_jumping and not self.is_dashing and is_on_ground:
 		self.host.play_animation("run")
+	
+	if not is_on_ground and self.velocity.y > 0:
+		self.host.play_no_direction_animation("falling")
+	if not is_on_ground and self.velocity.y < 0:
+		self.host.play_no_direction_animation("jump-float")
+	
 
 func static_do_process(delta):
 	if self.host.is_on_floor():

@@ -23,6 +23,19 @@ func play_animation(animation: String):
 	self.current_animation = animation
 	
 	await self.do_play_animation()
+	
+func play_no_direction_animation(animation: String):
+	var animation_name = animation
+	var old_animation_name = self.current_animation
+	
+	if old_animation_name == animation_name:
+		return
+	self.current_animation = animation
+	
+	var animation_path = self.character_path + "/" + animation_name + ".json"
+	$Skin.animation_file = animation_path
+	await $Skin.start()
+#	await self.do_play_animation()
 
 func do_play_animation():
 	var target_direction = self.direction
