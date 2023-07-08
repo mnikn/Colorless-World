@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://pabca4opfl2p"]
+
+[ext_resource type="Script" path="res://src/components/aseprite_animation_sprite.gd" id="1_tfbce"]
+
+[node name="AsepriteAnimationSprite" type="Sprite2D"]
+script = ExtResource("1_tfbce")
