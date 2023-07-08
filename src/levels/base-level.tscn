@@ -1,17 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2nqcstvyp7hf"]
+[gd_scene load_steps=6 format=3 uid="uid://d2nqcstvyp7hf"]
 
 [ext_resource type="Shader" path="res://src/levels/grayscale.gdshader" id="1_rg5t2"]
 [ext_resource type="Script" path="res://src/levels/base-level.gd" id="2_6pr0g"]
 [ext_resource type="Texture2D" uid="uid://cfvin71mje1yt" path="res://assets/ui_mock.png" id="3_bbi5o"]
 [ext_resource type="TileSet" uid="uid://bl2stkg7vsf8y" path="res://assets/base-level.tres" id="4_4ot0g"]
-[ext_resource type="Script" path="res://src/levels/exit.gd" id="5_fua4e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fddps"]
 shader = ExtResource("1_rg5t2")
 shader_parameter/filter_coff = Vector3(0, 0, 0)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kfpe4"]
-size = Vector2(20, 782)
 
 [node name="BaseLevel" type="Node2D"]
 material = SubResource("ShaderMaterial_fddps")
@@ -31,15 +27,6 @@ tile_set = ExtResource("4_4ot0g")
 format = 2
 
 [node name="Exits" type="Node2D" parent="."]
-
-[node name="Exit" type="Area2D" parent="Exits"]
-collision_layer = 256
-monitorable = false
-script = ExtResource("5_fua4e")
-
-[node name="Collision" type="CollisionShape2D" parent="Exits/Exit"]
-position = Vector2(1279, 355)
-shape = SubResource("RectangleShape2D_kfpe4")
 
 [node name="InitialCharacterPos" type="Marker2D" parent="."]
 position = Vector2(197, 442)

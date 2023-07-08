@@ -43,7 +43,8 @@ func switch_level(target_scene_path, area_node):
 		if area_node.direction == "right":
 			character_initial_pos.x = 40
 		elif area_node.direction == "left":
-			character_initial_pos.x = 1230
+#			character_initial_pos.x = 1230
+			character_initial_pos.x = 1250
 		tween.tween_property($Character, "position", character_initial_pos, 0.3)
 		await tween.finished
 		current_level.queue_free()

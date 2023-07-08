@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://43akdcvpttks"]
+
+[ext_resource type="Script" path="res://src/levels/components/exit.gd" id="1_fc7wm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kfpe4"]
+size = Vector2(20, 782)
+
+[node name="Exit" type="Area2D"]
+collision_layer = 256
+monitorable = false
+script = ExtResource("1_fc7wm")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(1279, 355)
+shape = SubResource("RectangleShape2D_kfpe4")
