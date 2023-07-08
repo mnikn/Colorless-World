@@ -31,9 +31,8 @@ script = ExtResource("4_ay7lg")
 [node name="Move" type="Node" parent="Character/StateManager" index="1"]
 script = ExtResource("5_ss783")
 GRAVITY = 1000
-ACCELERATION = 4200
-MAX_SPEED = 350
-JUMP_HEIGHT = -550
+ACCELERATION = 4500
+MAX_SPEED = 600
 MIN_JUMP_FORCE = -200
 MAX_JUMP_FORCE = -700
 JUMP_ACCELERATION = 500

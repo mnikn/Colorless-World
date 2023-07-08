@@ -48,7 +48,7 @@ func map_range(value, input_min, input_max, output_min, output_max):
 	return output_min + (output_max - output_min) * (value - input_min) / (input_max - input_min)
 
 func do_process(delta):
-	var input_vector = Vector2.ZERO
+	var input_vector = Vector2.ZERO	
 	input_vector.x = Input.get_action_strength("player_right") - Input.get_action_strength("player_left")
 	input_vector.y = Input.get_action_strength("player_down") - Input.get_action_strength("player_up")
 	
@@ -108,6 +108,9 @@ func do_process(delta):
 	
 	self.host.velocity = velocity
 	self.host.move_and_slide()
+	
+	if not self.is_jumping and not self.is_dashing:
+		self.host.play_animation("run")
 
 func static_do_process(delta):
 	if self.host.is_on_floor():

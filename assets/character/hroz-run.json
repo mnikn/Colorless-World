@@ -2,7 +2,40 @@
   "frames": [
     {
       "frame": 1,
-      "duration": 100,
+      "duration": 150,
+      "collision": {
+        "x": 5,
+        "y": 3,
+        "width": 8,
+        "height": 15,
+        "shapeType": "retangle"
+      }
+    },
+    {
+      "frame": 2,
+      "duration": 150,
+      "collision": {
+        "x": 5,
+        "y": 3,
+        "width": 8,
+        "height": 15,
+        "shapeType": "retangle"
+      }
+    },
+    {
+      "frame": 3,
+      "duration": 150,
+      "collision": {
+        "x": 5,
+        "y": 3,
+        "width": 8,
+        "height": 15,
+        "shapeType": "retangle"
+      }
+    },
+    {
+      "frame": 4,
+      "duration": 150,
       "collision": {
         "x": 5,
         "y": 3,
@@ -13,7 +46,7 @@
     }
   ],
   "animation": {
-    "loop": false,
+    "loop": true,
     "img": "D:\\game_projects\\colorless-world\\assets\\character\\hroz-run.png"
   }
 }
