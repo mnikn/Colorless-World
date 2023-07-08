@@ -12,7 +12,8 @@ extends "res://src/components/character/state_manager/base_state.gd"
 @export var AIR_ACCELERATION = 200
 @export var AIR_CONTROL = 0.5
 @export var AIR_BRAKE = 100
-@export var DASH_SPEED = 400
+#@export var DASH_SPEED = 400
+@export var DASH_SPEED = Vector2(1000, 300)
 @export var DASH_DURATION = 0.2
 @export var DASH_COOLDOWN = 1.0
 @export var GROUND_FRICTION = 100
@@ -64,19 +65,25 @@ func do_process(delta):
 		dash_timer = DASH_DURATION
 		dash_cooldown_timer = DASH_COOLDOWN
 		dash_direction = input_vector.normalized()
+		if is_jumping:
+			self.is_jumping = false
 	
 	if is_on_ground:
 		velocity.x = approach(velocity.x, 0, GROUND_FRICTION * delta)
 	
 	if is_dashing:
-		print_debug("dash d: ", dash_direction)
-		velocity = dash_direction * DASH_SPEED
+#		velocity = dash_direction * DASH_SPEED
+		velocity.x = dash_direction.x * DASH_SPEED.x
+		velocity.y = dash_direction.y * DASH_SPEED.y
 		dash_timer -= delta
 		
 		if dash_timer <= 0.0:
 			is_dashing = false
 	
-#	if not self.is_jumping:
+	if velocity.y < 0 and self.host.is_on_ceiling():
+		velocity.y = 0
+	
+#	if not self.is_dashing:
 	velocity.y += GRAVITY * delta
 	
 	if is_jumping:

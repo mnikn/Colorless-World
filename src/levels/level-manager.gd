@@ -21,7 +21,14 @@ func tween_color_filter(target_val, duration = 2.0):
 		prev_val, 
 		target_val, 
 		duration)
-		
+
+func _process(delta):
+	$UI/DebugLabel.text = "Velocity: %s, on_wall: %s, on_ceil: %s" % [
+		str($Character.velocity),
+		str($Character.is_on_wall()),
+		str($Character.is_on_ceiling()),
+	]
+
 func switch_level(target_scene_path, area_node):
 	var current_level = $LevelContainer.get_children()[0]
 	if target_scene_path != null and len(target_scene_path) > 0:

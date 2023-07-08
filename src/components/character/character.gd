@@ -11,6 +11,7 @@ var current_animation = "idle"
 func _ready():
 	$StateManager.enabled = self.enabled
 	$Collision.shape = CapsuleShape2D.new()
+#	$Collision.shape = RectangleShape2D.new()
 	self.do_play_animation()
 
 func play_animation(animation: String):

@@ -43,9 +43,9 @@ MIN_JUMP_FORCE = -200
 MAX_JUMP_FORCE = -700
 JUMP_ACCELERATION = 500
 AIR_ACCELERATION = 2500
-DASH_SPEED = 1000
+DASH_SPEED = Vector2(1000, 600)
 DASH_DURATION = 0.05
-GROUND_FRICTION = 3700
+GROUND_FRICTION = 3800
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -67,5 +67,12 @@ show_percentage = false
 [node name="Panel" type="Panel" parent="UI/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="DebugLabel" type="Label" parent="UI"]
+offset_left = 91.0
+offset_top = 114.0
+offset_right = 131.0
+offset_bottom = 137.0
+text = "Velocity: "
 
 [editable path="Character"]
