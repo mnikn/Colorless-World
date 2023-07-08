@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://c552nib51gui4"]
+[gd_scene load_steps=3 format=3 uid="uid://c552nib51gui4"]
 
 [ext_resource type="PackedScene" uid="uid://d2nqcstvyp7hf" path="res://src/levels/base-level.tscn" id="1_ki06v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fde4y"]
+size = Vector2(20, 782)
 
 [node name="Level1" instance=ExtResource("1_ki06v")]
 
@@ -9,6 +12,9 @@ layer_0/tile_data = PackedInt32Array(40, 131072, 2, 39, 131072, 2, 38, 131072, 2
 
 [node name="Exit" parent="Exits" index="0"]
 target_scene = "res://src/levels/level-2.tscn"
+
+[node name="Collision" parent="Exits/Exit" index="0"]
+shape = SubResource("RectangleShape2D_fde4y")
 
 [node name="InitialCharacterPos" parent="." index="3"]
 position = Vector2(1123, 561)

@@ -11,7 +11,7 @@ shader = ExtResource("1_rg5t2")
 shader_parameter/filter_coff = Vector3(0, 0, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kfpe4"]
-size = Vector2(66, 782)
+size = Vector2(20, 782)
 
 [node name="BaseLevel" type="Node2D"]
 material = SubResource("ShaderMaterial_fddps")

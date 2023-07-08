@@ -2,6 +2,8 @@ extends Node2D
 
 
 func _ready():
+#	self.tween_color_filter(Vector3(1.0,1.0,1.0),0.0)
+	self.tween_color_filter(Vector3(0.0,0.0,0.0),0.0)
 	$Character.set_state("idle")
 	$Character.position = $LevelContainer.get_children()[0].get_node("InitialCharacterPos").position
 	for node in $LevelContainer.get_children():
@@ -38,12 +40,10 @@ func switch_level(target_scene_path, area_node):
 		tween.tween_property(target_scene_node, "position", Vector2(0, 0), 0.7)
 		
 		var character_initial_pos = $Character.position
-#		print_debug(area_node.direction)
 		if area_node.direction == "right":
 			character_initial_pos.x = 40
 		elif area_node.direction == "left":
 			character_initial_pos.x = 1230
-#		if ($Character.velocity)
 		tween.tween_property($Character, "position", character_initial_pos, 0.3)
 		await tween.finished
 		current_level.queue_free()
