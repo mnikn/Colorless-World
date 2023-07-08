@@ -24,6 +24,7 @@ var is_on_ground = false
 var is_dashing = false
 var dash_timer = 0.0
 var dash_cooldown_timer = 0.0
+var cannot_dash = false
 var dash_direction = Vector2.ZERO
 var initial_move_param = {}
 
@@ -52,6 +53,7 @@ func do_process(delta):
 	input_vector.y = Input.get_action_strength("player_down") - Input.get_action_strength("player_up")
 	self.is_on_ground = self.host.is_on_floor()
 	if is_on_ground:
+		cannot_dash = false
 		velocity.x = approach(velocity.x, input_vector.x * MAX_SPEED, ACCELERATION * delta)
 		velocity.y = 0
 		
@@ -73,6 +75,7 @@ func do_process(delta):
 		dash_timer = DASH_DURATION
 		dash_cooldown_timer = DASH_COOLDOWN
 		dash_direction = input_vector.normalized()
+		cannot_dash = true
 		if is_jumping:
 			self.is_jumping = false
 	
@@ -105,6 +108,10 @@ func do_process(delta):
 
 func static_do_process(delta):
 	if self.host.is_on_floor():
+		self.cannot_dash = false
+#	if self.cannot_dash:
+#		self.cannot_dash = self.host.is_on_floor()
+	if not cannot_dash:
 		self.dash_cooldown_timer = max(0.0, dash_cooldown_timer - delta)
 
 func can_enter_state() -> bool:

@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://t6tyxpjqgd5c"]
+
+[ext_resource type="Script" path="res://src/levels/components/hammer.gd" id="1_2yxfn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fvg7n"]
+size = Vector2(44, 47)
+
+[node name="Hammer" type="Area2D"]
+use_parent_material = true
+position = Vector2(239, 651)
+collision_layer = 8
+monitorable = false
+script = ExtResource("1_2yxfn")
+metadata/_edit_group_ = true
+
+[node name="Skin" type="ColorRect" parent="."]
+offset_left = -20.0
+offset_top = -19.0
+offset_right = 20.0
+offset_bottom = 21.0
+color = Color(1, 0.478431, 0.478431, 1)
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fvg7n")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

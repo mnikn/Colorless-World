@@ -44,19 +44,19 @@ func _input(event):
 	if changing_color:
 		return
 		
-	if Input.is_action_just_pressed("player_select_red"):
+	if Input.is_action_just_pressed("player_select_red") and GameManager.colors.red:
 		self.changing_color = true
 		await self.tween_color_filter(Vector3(0,1,1))
 		self.character_recover()
 		$Character/StateManager/Move.DASH_DURATION *= 3
 		self.changing_color = false
-	elif Input.is_action_just_pressed("player_select_green"):
+	elif Input.is_action_just_pressed("player_select_green") and GameManager.colors.green:
 		self.changing_color = true
 		await self.tween_color_filter(Vector3(1,0,1))
 		self.character_recover()
 		$Character/StateManager/Move.DASH_COOLDOWN *= 0.5
 		self.changing_color = false
-	elif Input.is_action_just_pressed("player_select_blue"):
+	elif Input.is_action_just_pressed("player_select_blue") and GameManager.colors.blue:
 		self.changing_color = true
 		await self.tween_color_filter(Vector3(1,1,0))
 		self.character_recover()
@@ -76,6 +76,7 @@ func switch_level(target_scene_path, area_node):
 	if target_scene_path != null and len(target_scene_path) > 0:
 		$Character.get_node("StateManager").stop()
 		current_level.set_collision_enabled(false)
+		$Character/Collision.disabled = true
 		
 		var target_scene = ResourceManager.load_scene(target_scene_path)
 		var target_scene_node = target_scene.instantiate()
@@ -96,7 +97,17 @@ func switch_level(target_scene_path, area_node):
 		elif area_node.direction == "left":
 #			character_initial_pos.x = 1230
 			character_initial_pos.x = 1250
-		tween.tween_property($Character, "position", character_initial_pos, 0.3)
+		elif area_node.direction == "up_right":
+#			character_initial_pos.x = 1230
+			character_initial_pos.y = 650
+			character_initial_pos.x += 20
+		elif area_node.direction == "up":
+			character_initial_pos.y = 600
+		elif area_node.direction == "down":
+			character_initial_pos.y = 30
+		$Character.position = character_initial_pos
+#		tween.tween_property($Character, "position", character_initial_pos, 0.3)
+#		tween.tween_property($Character, "position", character_initial_pos, 0.7)
 		await tween.finished
 		current_level.queue_free()
 		target_scene_node.set_collision_enabled(true)
@@ -106,6 +117,7 @@ func switch_level(target_scene_path, area_node):
 		target_scene_node.connect("on_dead_entered", func ():
 			self.call_deferred("on_dead"))
 		$Character.get_node("StateManager").start()
+		$Character/Collision.disabled = false
 
 func on_dead():
 	$Character.get_node("StateManager").stop()
