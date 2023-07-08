@@ -17,6 +17,7 @@ layer_0/tile_data = PackedInt32Array(1310742, 131072, 1, 1310741, 131072, 1, 131
 [node name="Exit" parent="Exits" index="0" instance=ExtResource("2_waqem")]
 position = Vector2(-1280, 0)
 target_scene = "res://src/levels/level-12.tscn"
+direction = "left"
 
 [node name="Exit2" type="Area2D" parent="Exits" index="1"]
 position = Vector2(-1112, 8)
@@ -94,73 +95,73 @@ position = Vector2(529, 318)
 position = Vector2(251, 242)
 
 [node name="Spike8" parent="." index="21" instance=ExtResource("2_3ces8")]
-position = Vector2(544, 456)
+position = Vector2(568, 456)
 spike_interval = 0.0
 
 [node name="Spike9" parent="." index="22" instance=ExtResource("2_3ces8")]
-position = Vector2(504, 456)
+position = Vector2(528, 456)
 spike_interval = 0.0
 
 [node name="Spike10" parent="." index="23" instance=ExtResource("2_3ces8")]
-position = Vector2(584, 456)
+position = Vector2(608, 456)
 spike_interval = 0.0
 
 [node name="Spike11" parent="." index="24" instance=ExtResource("2_3ces8")]
-position = Vector2(624, 456)
+position = Vector2(648, 456)
 spike_interval = 0.0
 
 [node name="Spike18" parent="." index="25" instance=ExtResource("2_3ces8")]
-position = Vector2(704, 456)
+position = Vector2(728, 456)
 spike_interval = 0.0
 
 [node name="Spike19" parent="." index="26" instance=ExtResource("2_3ces8")]
-position = Vector2(664, 456)
+position = Vector2(688, 456)
 spike_interval = 0.0
 
 [node name="Spike20" parent="." index="27" instance=ExtResource("2_3ces8")]
-position = Vector2(264, 456)
+position = Vector2(288, 456)
 spike_interval = 0.0
 
 [node name="Spike21" parent="." index="28" instance=ExtResource("2_3ces8")]
-position = Vector2(424, 456)
+position = Vector2(448, 456)
 spike_interval = 0.0
 
 [node name="Spike22" parent="." index="29" instance=ExtResource("2_3ces8")]
-position = Vector2(384, 456)
+position = Vector2(408, 456)
 spike_interval = 0.0
 
 [node name="Spike23" parent="." index="30" instance=ExtResource("2_3ces8")]
-position = Vector2(344, 456)
+position = Vector2(368, 456)
 spike_interval = 0.0
 
 [node name="Spike24" parent="." index="31" instance=ExtResource("2_3ces8")]
-position = Vector2(304, 456)
+position = Vector2(328, 456)
 spike_interval = 0.0
 
 [node name="Spike25" parent="." index="32" instance=ExtResource("2_3ces8")]
-position = Vector2(464, 456)
+position = Vector2(488, 456)
 spike_interval = 0.0
 
 [node name="Spike26" parent="." index="33" instance=ExtResource("2_3ces8")]
-position = Vector2(744, 456)
+position = Vector2(768, 456)
 spike_interval = 0.0
 
 [node name="Spike27" parent="." index="34" instance=ExtResource("2_3ces8")]
-position = Vector2(824, 456)
+position = Vector2(848, 456)
 spike_interval = 0.0
 
 [node name="Spike28" parent="." index="35" instance=ExtResource("2_3ces8")]
-position = Vector2(784, 456)
+position = Vector2(808, 456)
 spike_interval = 0.0
 
 [node name="Spike29" parent="." index="36" instance=ExtResource("2_3ces8")]
-position = Vector2(864, 456)
+position = Vector2(888, 456)
 spike_interval = 0.0
 
 [node name="Spike30" parent="." index="37" instance=ExtResource("2_3ces8")]
-position = Vector2(904, 456)
+position = Vector2(928, 456)
 spike_interval = 0.0
 
 [node name="Spike31" parent="." index="38" instance=ExtResource("2_3ces8")]
-position = Vector2(224, 456)
+position = Vector2(248, 456)
 spike_interval = 0.0

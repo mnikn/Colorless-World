@@ -1,22 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://ma4qc0pl1mn0"]
+[gd_scene load_steps=5 format=3 uid="uid://ma4qc0pl1mn0"]
 
 [ext_resource type="Script" path="res://src/levels/components/spike.gd" id="1_na56i"]
+[ext_resource type="PackedScene" uid="uid://pabca4opfl2p" path="res://src/components/aseprite_animation_sprite.tscn" id="2_0c2g8"]
+[ext_resource type="Texture2D" uid="uid://bget6oc4n50gk" path="res://assets/spike-idle.png" id="3_71avx"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_310en"]
-size = Vector2(40, 40)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w27u6"]
+radius = 8.0
+height = 64.0
 
 [node name="Spike" type="Area2D"]
+use_parent_material = true
 position = Vector2(696, 608)
 collision_layer = 256
 script = ExtResource("1_na56i")
-metadata/_edit_group_ = true
 
-[node name="Skin" type="ColorRect" parent="."]
+[node name="SkinOld" type="ColorRect" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="Skin" parent="." instance=ExtResource("2_0c2g8")]
+use_parent_material = true
+scale = Vector2(2, 2)
+texture = ExtResource("3_71avx")
+metadata/_edit_lock_ = true
+
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(20, 20)
-shape = SubResource("RectangleShape2D_310en")
+position = Vector2(0, 16)
+shape = SubResource("CapsuleShape2D_w27u6")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

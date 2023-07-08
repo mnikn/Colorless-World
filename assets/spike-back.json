@@ -1,0 +1,24 @@
+{
+  "frames": [
+    {
+      "frame": 1,
+      "duration": 50
+    },
+    {
+      "frame": 2,
+      "duration": 50
+    },
+    {
+      "frame": 3,
+      "duration": 50
+    },
+    {
+      "frame": 4,
+      "duration": 50
+    }
+  ],
+  "animation": {
+    "loop": false,
+    "img": "D:\\game_projects\\colorless-world\\assets\\spike-back.png"
+  }
+}
