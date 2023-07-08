@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4hqp8sqmsdyi"]
+[gd_scene load_steps=6 format=3 uid="uid://b4hqp8sqmsdyi"]
 
 [ext_resource type="PackedScene" uid="uid://d2nqcstvyp7hf" path="res://src/levels/base-level.tscn" id="1_q7fy2"]
 [ext_resource type="Script" path="res://src/levels/components/exit.gd" id="2_0muyg"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcfvc"]
 size = Vector2(130, 66)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mtk5o"]
+size = Vector2(1384, 33)
 
 [node name="Level2" instance=ExtResource("1_q7fy2")]
 
@@ -29,5 +32,13 @@ position = Vector2(-1282, 0)
 target_scene = "res://src/levels/level-1.tscn"
 direction = "left"
 
-[node name="InitialCharacterPos" parent="." index="3"]
-position = Vector2(50, 583)
+[node name="Dead" type="Area2D" parent="Deads" index="0"]
+collision_layer = 256
+monitorable = false
+
+[node name="Collision" type="CollisionShape2D" parent="Deads/Dead" index="0"]
+position = Vector2(611, 741.5)
+shape = SubResource("RectangleShape2D_mtk5o")
+
+[node name="InitialCharacterPos" parent="." index="4"]
+position = Vector2(42, 579)

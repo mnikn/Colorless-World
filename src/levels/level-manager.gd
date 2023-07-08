@@ -10,6 +10,8 @@ func _ready():
 		node.connect("on_exit_entered", func (target_scene_path, area_node):
 			self.call_deferred("switch_level", target_scene_path, area_node)
 		)
+		node.connect("on_dead_entered", func ():
+			self.call_deferred("on_dead"))
 
 func tween_color_filter(target_val, duration = 2.0):
 	var tween = self.create_tween()
@@ -52,4 +54,13 @@ func switch_level(target_scene_path, area_node):
 		target_scene_node.connect("on_exit_entered", func (next_target_scene_path, next_area_node):
 			self.call_deferred("switch_level", next_target_scene_path, next_area_node)
 		)
+		target_scene_node.connect("on_dead_entered", func ():
+			self.call_deferred("on_dead"))
 		$Character.get_node("StateManager").start()
+
+func on_dead():
+	$Character.get_node("StateManager").stop()
+	var current_level = $LevelContainer.get_children()[0]
+	$Character.position = current_level.get_node("InitialCharacterPos").position
+	$Character.get_node("StateManager").reset()
+	$Character.set_state("idle")

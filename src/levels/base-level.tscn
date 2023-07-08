@@ -28,5 +28,7 @@ format = 2
 
 [node name="Exits" type="Node2D" parent="."]
 
+[node name="Deads" type="Node2D" parent="."]
+
 [node name="InitialCharacterPos" type="Marker2D" parent="."]
 position = Vector2(197, 442)

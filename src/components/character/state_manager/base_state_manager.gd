@@ -55,3 +55,8 @@ func start():
 	for state in self.get_children():
 		if state.name in self.prev_state_enabled:
 			state.enabled = self.prev_state_enabled[state.name]
+
+func reset():
+	self.prev_state_enabled = {}
+	self.stop()
+	self.start()
