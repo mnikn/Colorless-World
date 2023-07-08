@@ -6,6 +6,8 @@ class_name GameStateTree
 var host = null
 var current_state = null
 
+var prev_state_enabled = {} 
+
 func _ready():
 	self.host = self.get_parent()
 	for state in self.get_children():
@@ -41,3 +43,15 @@ func change_state(state):
 	target_state.enabled = true
 	target_state.on_enter(self.current_state)
 	self.current_state = target_state
+
+func stop():
+	self.enabled = false
+	for state in self.get_children():
+		self.prev_state_enabled[state.name] = state.enabled
+		state.enabled = false
+
+func start():
+	self.enabled = true
+	for state in self.get_children():
+		if state.name in self.prev_state_enabled:
+			state.enabled = self.prev_state_enabled[state.name]

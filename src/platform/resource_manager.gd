@@ -10,6 +10,15 @@ func load_texture(path):
 	var texture = load(path)
 	mapper[path] = texture
 	return texture
+	
+func load_scene(path):
+	if path == null or path == "":
+		return null
+	if mapper.has(path):
+		return mapper[path]
+	var scene = load(path)
+	mapper[path] = scene
+	return scene
 
 func cache_texture(path_arr: Array):
 	for path in path_arr:

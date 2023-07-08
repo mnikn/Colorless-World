@@ -1,19 +1,22 @@
 [gd_scene load_steps=6 format=3 uid="uid://bdyx1xl71wa3w"]
 
 [ext_resource type="Script" path="res://src/levels/level-manager.gd" id="1_kp6my"]
+[ext_resource type="PackedScene" uid="uid://c552nib51gui4" path="res://src/levels/level-1.tscn" id="2_e6wab"]
 [ext_resource type="PackedScene" uid="uid://bshv6o728m7iu" path="res://src/components/character/character.tscn" id="2_hk1xs"]
-[ext_resource type="PackedScene" uid="uid://c17p27xqc3hd5" path="res://src/levels/mock-level.tscn" id="3_uv3bi"]
 [ext_resource type="Script" path="res://src/components/character/state_manager/player/idle.gd" id="4_ay7lg"]
 [ext_resource type="Script" path="res://src/components/character/state_manager/player/move.gd" id="5_ss783"]
 
 [node name="LevelManager" type="Node2D"]
 script = ExtResource("1_kp6my")
 
-[node name="MockLevel" parent="." instance=ExtResource("3_uv3bi")]
+[node name="LevelContainer" type="Node2D" parent="."]
+
+[node name="Level1" parent="LevelContainer" instance=ExtResource("2_e6wab")]
 
 [node name="Character" parent="." instance=ExtResource("2_hk1xs")]
-position = Vector2(465, 207)
+position = Vector2(1147, 588)
 character_path = "res://assets/character"
+metadata/_edit_group_ = true
 
 [node name="Idle" type="Node" parent="Character/StateManager" index="0"]
 script = ExtResource("4_ay7lg")

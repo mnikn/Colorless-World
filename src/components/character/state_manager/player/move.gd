@@ -24,7 +24,7 @@ func approach(current, target, step):
 	else:
 		return max(current - step, target)
 
-func _physics_process(delta):
+func do_process(delta):
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("player_right") - Input.get_action_strength("player_left")
 	self.is_on_ground = self.host.is_on_floor()
@@ -63,7 +63,6 @@ func _physics_process(delta):
 	
 	velocity.y += GRAVITY * delta
 	self.host.velocity = velocity
-#    velocity.x = move_and_slide(velocity, Vector2.UP).x
 	self.host.move_and_slide()
 	dash_cooldown_timer = max(0.0, dash_cooldown_timer - delta)
 
@@ -74,5 +73,8 @@ func _on_Area2D_body_exited(body):
 	is_on_ground = false
 
 func can_enter_state() -> bool:
-	var res = Input.get_axis("player_left", "player_right") != 0 or Input.get_action_strength("player_jump") != 0 or Input.get_action_strength("player_dash") != 0
-	return res
+	return (
+		not self.host.is_on_floor() or
+		Input.get_axis("player_left", "player_right") != 0 or 
+		Input.get_action_strength("player_jump") != 0 or
+		Input.get_action_strength("player_dash") != 0)
