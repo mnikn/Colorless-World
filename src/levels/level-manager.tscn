@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdyx1xl71wa3w"]
+
+[ext_resource type="Script" path="res://src/levels/level-manager.gd" id="1_kp6my"]
+[ext_resource type="PackedScene" uid="uid://bshv6o728m7iu" path="res://src/components/character/character.tscn" id="2_hk1xs"]
+[ext_resource type="PackedScene" uid="uid://c17p27xqc3hd5" path="res://src/levels/mock-level.tscn" id="3_uv3bi"]
+[ext_resource type="Script" path="res://src/components/character/state_manager/player/idle.gd" id="4_ay7lg"]
+[ext_resource type="Script" path="res://src/components/character/state_manager/player/move.gd" id="5_ss783"]
+
+[node name="LevelManager" type="Node2D"]
+script = ExtResource("1_kp6my")
+
+[node name="MockLevel" parent="." instance=ExtResource("3_uv3bi")]
+
+[node name="Character" parent="." instance=ExtResource("2_hk1xs")]
+position = Vector2(465, 207)
+character_path = "res://assets/character"
+
+[node name="Idle" type="Node" parent="Character/StateManager" index="0"]
+script = ExtResource("4_ay7lg")
+
+[node name="Move" type="Node" parent="Character/StateManager" index="1"]
+script = ExtResource("5_ss783")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+offset_left = 35.0
+offset_top = 21.0
+offset_right = 482.0
+offset_bottom = 53.0
+theme_override_constants/separation = 32
+
+[node name="ColorRect" type="ProgressBar" parent="UI/HBoxContainer"]
+custom_minimum_size = Vector2(160, 16)
+layout_mode = 2
+size_flags_vertical = 4
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="Panel" type="Panel" parent="UI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[editable path="Character"]
