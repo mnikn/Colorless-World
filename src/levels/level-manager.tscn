@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdyx1xl71wa3w"]
+[gd_scene load_steps=7 format=3 uid="uid://bdyx1xl71wa3w"]
 
 [ext_resource type="Shader" path="res://src/levels/grayscale.gdshader" id="1_a8mj0"]
 [ext_resource type="Script" path="res://src/levels/level-manager.gd" id="1_kp6my"]
-[ext_resource type="PackedScene" uid="uid://c552nib51gui4" path="res://src/levels/level-1.tscn" id="2_e6wab"]
 [ext_resource type="PackedScene" uid="uid://bshv6o728m7iu" path="res://src/components/character/character.tscn" id="2_hk1xs"]
 [ext_resource type="Script" path="res://src/components/character/state_manager/player/idle.gd" id="4_ay7lg"]
 [ext_resource type="Script" path="res://src/components/character/state_manager/player/move.gd" id="5_ss783"]
@@ -16,9 +15,6 @@ material = SubResource("ShaderMaterial_dlxcv")
 script = ExtResource("1_kp6my")
 
 [node name="LevelContainer" type="Node2D" parent="."]
-use_parent_material = true
-
-[node name="Level1" parent="LevelContainer" instance=ExtResource("2_e6wab")]
 use_parent_material = true
 
 [node name="Character" parent="." instance=ExtResource("2_hk1xs")]
@@ -42,9 +38,10 @@ JUMP_HEIGHT = -550
 MIN_JUMP_FORCE = -200
 MAX_JUMP_FORCE = -700
 JUMP_ACCELERATION = 500
-AIR_ACCELERATION = 2500
-DASH_SPEED = Vector2(1000, 600)
+AIR_ACCELERATION = 2700
+DASH_SPEED = Vector2(1000, 500)
 DASH_DURATION = 0.05
+DASH_COOLDOWN = 0.5
 GROUND_FRICTION = 3800
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -53,20 +50,40 @@ GROUND_FRICTION = 3800
 offset_left = 35.0
 offset_top = 21.0
 offset_right = 482.0
-offset_bottom = 53.0
+offset_bottom = 69.0
 theme_override_constants/separation = 32
 
-[node name="ColorRect" type="ProgressBar" parent="UI/HBoxContainer"]
+[node name="DashBar" type="ProgressBar" parent="UI/HBoxContainer"]
 custom_minimum_size = Vector2(160, 16)
 layout_mode = 2
 size_flags_vertical = 4
-step = 1.0
-value = 50.0
+max_value = 1.0
+value = 1.0
 show_percentage = false
 
 [node name="Panel" type="Panel" parent="UI/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="UI/HBoxContainer/Panel/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+color = Color(1, 0, 0, 1)
 
 [node name="DebugLabel" type="Label" parent="UI"]
 offset_left = 91.0

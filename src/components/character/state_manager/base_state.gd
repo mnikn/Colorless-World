@@ -9,9 +9,13 @@ func _ready():
 		self.on_enter(null)
 
 func _process(_delta):
+	self.static_do_process(_delta)
 	if not self.enabled:
 		return
 	self.do_process(_delta)
+	
+func static_do_process(_delta):
+	pass
 
 func on_enter(_prev_state):
 	pass

@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdrgff0hwq58x"]
+[gd_scene load_steps=6 format=3 uid="uid://bdrgff0hwq58x"]
 
 [ext_resource type="PackedScene" uid="uid://d2nqcstvyp7hf" path="res://src/levels/base-level.tscn" id="1_b5dkl"]
 [ext_resource type="PackedScene" uid="uid://43akdcvpttks" path="res://src/levels/components/exit.tscn" id="2_1wuge"]
+[ext_resource type="PackedScene" uid="uid://pabca4opfl2p" path="res://src/components/aseprite_animation_sprite.tscn" id="3_3oqsr"]
+[ext_resource type="Shader" path="res://src/levels/grayscale.gdshader" id="4_x8eji"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sf6d4"]
+shader = ExtResource("4_x8eji")
+shader_parameter/filter_coff = Vector3(0, 1, 1)
 
 [node name="Level3" instance=ExtResource("1_b5dkl")]
 
@@ -12,3 +18,17 @@ layer_0/tile_data = PackedInt32Array(1441791, 65536, 2, 1376255, 65536, 2, 13107
 position = Vector2(-1284, 0)
 target_scene = "res://src/levels/level-2.tscn"
 direction = "left"
+
+[node name="InitialCharacterPos" parent="." index="4"]
+position = Vector2(52, 555)
+
+[node name="Enemy" parent="." index="5" instance=ExtResource("3_3oqsr")]
+material = SubResource("ShaderMaterial_sf6d4")
+position = Vector2(944, 583)
+scale = Vector2(3, 3)
+flip_h = true
+animation_file = "res://assets/character/horz-idle.json"
+
+[node name="Mask" type="CanvasModulate" parent="." index="6"]
+position = Vector2(944, 583)
+scale = Vector2(3, 3)

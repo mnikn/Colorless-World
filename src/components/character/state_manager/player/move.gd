@@ -25,9 +25,17 @@ var is_dashing = false
 var dash_timer = 0.0
 var dash_cooldown_timer = 0.0
 var dash_direction = Vector2.ZERO
+var initial_move_param = {}
 
 var jump_start_velocity = 0
 var is_jumping = false
+
+func _ready():
+	self.initial_move_param = {
+		"DASH_SPEED": DASH_SPEED,
+		"DASH_DURATION": DASH_DURATION,
+		"DASH_COOLDOWN": DASH_COOLDOWN
+	}
 
 func approach(current, target, step):
 	if current < target:
@@ -94,18 +102,16 @@ func do_process(delta):
 	
 	self.host.velocity = velocity
 	self.host.move_and_slide()
-	dash_cooldown_timer = max(0.0, dash_cooldown_timer - delta)
 
-func _on_Area2D_body_entered(body):
-	is_on_ground = true
-
-func _on_Area2D_body_exited(body):
-	is_on_ground = false
+func static_do_process(delta):
+	if self.host.is_on_floor():
+		self.dash_cooldown_timer = max(0.0, dash_cooldown_timer - delta)
 
 func can_enter_state() -> bool:
 	return (
 		self.host.velocity != Vector2.ZERO or
 		not self.host.is_on_floor() or
+#		self.dash_cooldown_timer > 0 or
 		Input.get_axis("player_left", "player_right") != 0 or 
 		Input.get_action_strength("player_jump") != 0 or
 		Input.get_action_strength("player_dash") != 0)
