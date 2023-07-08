@@ -11,6 +11,7 @@ shader_parameter/filter_coff = Vector3(0, 0, 0)
 
 [node name="BaseLevel" type="Node2D"]
 material = SubResource("ShaderMaterial_fddps")
+use_parent_material = true
 script = ExtResource("2_6pr0g")
 
 [node name="Bg" type="TextureRect" parent="."]
@@ -22,6 +23,7 @@ texture = ExtResource("3_bbi5o")
 metadata/_edit_lock_ = true
 
 [node name="Map" type="TileMap" parent="."]
+use_parent_material = true
 scale = Vector2(2, 2)
 tile_set = ExtResource("4_4ot0g")
 format = 2
