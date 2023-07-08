@@ -35,6 +35,14 @@ script = ExtResource("4_ay7lg")
 
 [node name="Move" type="Node" parent="Character/StateManager" index="1"]
 script = ExtResource("5_ss783")
+ACCELERATION = 4200
+MAX_SPEED = 300
+JUMP_HEIGHT = -550
+JUMP_ACCELERATION = 500
+AIR_ACCELERATION = 4200
+DASH_SPEED = 1000
+DASH_DURATION = 0.02
+GROUND_FRICTION = 3700
 
 [node name="UI" type="CanvasLayer" parent="."]
 

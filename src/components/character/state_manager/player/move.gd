@@ -5,18 +5,25 @@ extends "res://src/components/character/state_manager/base_state.gd"
 @export var MAX_SPEED = 200
 @export var DECELERATION = 500
 @export var JUMP_HEIGHT = -400
+@export var JUMP_ACCELERATION = 2400
 @export var AIR_ACCELERATION = 200
 @export var AIR_CONTROL = 0.5
 @export var AIR_BRAKE = 100
 @export var DASH_SPEED = 400
 @export var DASH_DURATION = 0.2
 @export var DASH_COOLDOWN = 1.0
+@export var GROUND_FRICTION = 100
 
 var velocity = Vector2.ZERO
 var is_on_ground = false
+
 var is_dashing = false
 var dash_timer = 0.0
 var dash_cooldown_timer = 0.0
+var dash_direction = Vector2.ZERO
+
+var jump_start_velocity = 0
+var is_jumping = false
 
 func approach(current, target, step):
 	if current < target:
@@ -27,12 +34,15 @@ func approach(current, target, step):
 func do_process(delta):
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("player_right") - Input.get_action_strength("player_left")
+	input_vector.y = Input.get_action_strength("player_down") - Input.get_action_strength("player_up")
 	self.is_on_ground = self.host.is_on_floor()
 	if is_on_ground:
 		velocity.x = approach(velocity.x, input_vector.x * MAX_SPEED, ACCELERATION * delta)
 		velocity.y = 0
 		
 		if Input.is_action_just_pressed("player_jump"):
+			is_jumping = true
+			jump_start_velocity = velocity.y
 			velocity.y = JUMP_HEIGHT
 			is_on_ground = false
 		
@@ -40,6 +50,7 @@ func do_process(delta):
 			is_dashing = true
 			dash_timer = DASH_DURATION
 			dash_cooldown_timer = DASH_COOLDOWN
+			dash_direction = input_vector.normalized()
 	else:
 		velocity.x = approach(velocity.x, input_vector.x * MAX_SPEED, AIR_ACCELERATION * delta)
 		
@@ -52,16 +63,27 @@ func do_process(delta):
 			is_dashing = true
 			dash_timer = DASH_DURATION
 			dash_cooldown_timer = DASH_COOLDOWN
-		
+			dash_direction = input_vector.normalized()
+	
+	if is_on_ground:
+		velocity.x = approach(velocity.x, 0, GROUND_FRICTION * delta)
 	
 	if is_dashing:
-		velocity.x = DASH_SPEED * input_vector.x
+		velocity = dash_direction * DASH_SPEED
+#		velocity.x = DASH_SPEED * input_vector.x
 		dash_timer -= delta
 		
 		if dash_timer <= 0.0:
 			is_dashing = false
 	
+#	if not self.is_jumping:
 	velocity.y += GRAVITY * delta
+	
+	if is_jumping:
+		velocity.y = approach(velocity.y, jump_start_velocity, JUMP_ACCELERATION * delta)
+		if velocity.y >= jump_start_velocity:
+			is_jumping = false
+	
 	self.host.velocity = velocity
 	self.host.move_and_slide()
 	dash_cooldown_timer = max(0.0, dash_cooldown_timer - delta)
@@ -74,6 +96,7 @@ func _on_Area2D_body_exited(body):
 
 func can_enter_state() -> bool:
 	return (
+		self.host.velocity != Vector2.ZERO or
 		not self.host.is_on_floor() or
 		Input.get_axis("player_left", "player_right") != 0 or 
 		Input.get_action_strength("player_jump") != 0 or

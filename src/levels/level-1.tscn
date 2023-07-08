@@ -12,4 +12,4 @@ layer_0/tile_data = PackedInt32Array(40, 131072, 2, 39, 131072, 2, 38, 131072, 2
 target_scene = "res://src/levels/level-2.tscn"
 
 [node name="InitialCharacterPos" parent="." index="4"]
-position = Vector2(1127, 542)
+position = Vector2(1127, 562)

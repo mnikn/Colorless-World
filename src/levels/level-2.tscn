@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://43akdcvpttks" path="res://src/levels/components/exit.tscn" id="2_cac7p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcfvc"]
-size = Vector2(130, 66)
+size = Vector2(130, 111)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mtk5o"]
 size = Vector2(1384, 33)
@@ -22,9 +22,10 @@ target_scene = "res://src/levels/level-3.tscn"
 collision_layer = 256
 monitorable = false
 script = ExtResource("2_0muyg")
+direction = "up"
 
 [node name="Collision" type="CollisionShape2D" parent="Exits/Exit2" index="0"]
-position = Vector2(976, -4)
+position = Vector2(976, 18.5)
 shape = SubResource("RectangleShape2D_fcfvc")
 
 [node name="Exit3" parent="Exits" index="2" instance=ExtResource("2_cac7p")]
