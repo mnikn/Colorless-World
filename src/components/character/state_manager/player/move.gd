@@ -51,6 +51,9 @@ func do_process(delta):
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("player_right") - Input.get_action_strength("player_left")
 	input_vector.y = Input.get_action_strength("player_down") - Input.get_action_strength("player_up")
+	
+	if input_vector.x != 0:
+		self.host.direction = "left" if input_vector.x < 0 else "right"
 	self.is_on_ground = self.host.is_on_floor()
 	if is_on_ground:
 		cannot_dash = false

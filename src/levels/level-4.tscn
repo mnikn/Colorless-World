@@ -44,7 +44,7 @@ position = Vector2(-785, -768)
 collision_layer = 256
 monitorable = false
 script = ExtResource("2_14pw5")
-target_scene = "res://src/levels/level-2.tscn"
+target_scene = "res://src/levels/level-12.tscn"
 direction = "up"
 
 [node name="Collision" type="CollisionShape2D" parent="Exits/Exit3" index="0"]
