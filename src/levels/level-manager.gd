@@ -5,8 +5,8 @@ func _ready():
 	$Character.set_state("idle")
 	$Character.position = $LevelContainer.get_children()[0].get_node("InitialCharacterPos").position
 	for node in $LevelContainer.get_children():
-		node.connect("on_exit_entered", func (target_scene_path):
-			self.call_deferred("switch_level", target_scene_path)
+		node.connect("on_exit_entered", func (target_scene_path, area_node):
+			self.call_deferred("switch_level", target_scene_path, area_node)
 		)
 
 func tween_color_filter(target_val, duration = 2.0):
@@ -18,7 +18,7 @@ func tween_color_filter(target_val, duration = 2.0):
 		target_val, 
 		duration)
 		
-func switch_level(target_scene_path):
+func switch_level(target_scene_path, area_node):
 	var current_level = $LevelContainer.get_children()[0]
 	if target_scene_path != null and len(target_scene_path) > 0:
 		$Character.get_node("StateManager").stop()
@@ -36,11 +36,19 @@ func switch_level(target_scene_path):
 		tween.set_trans(Tween.TRANS_CUBIC)
 		tween.tween_property(current_level, "position", Vector2(-1680, 0), 0.7)
 		tween.tween_property(target_scene_node, "position", Vector2(0, 0), 0.7)
-		tween.tween_property($Character, "position", target_scene_node.get_node("InitialCharacterPos").position, 0.3)
+		
+		var character_initial_pos = $Character.position
+#		print_debug(area_node.direction)
+		if area_node.direction == "right":
+			character_initial_pos.x = 40
+		elif area_node.direction == "left":
+			character_initial_pos.x = 1230
+#		if ($Character.velocity)
+		tween.tween_property($Character, "position", character_initial_pos, 0.3)
 		await tween.finished
 		current_level.queue_free()
 		target_scene_node.set_collision_enabled(true)
-		target_scene_node.connect("on_exit_entered", func (next_target_scene_path):
-			self.call_deferred("switch_level", next_target_scene_path)
+		target_scene_node.connect("on_exit_entered", func (next_target_scene_path, next_area_node):
+			self.call_deferred("switch_level", next_target_scene_path, next_area_node)
 		)
 		$Character.get_node("StateManager").start()
