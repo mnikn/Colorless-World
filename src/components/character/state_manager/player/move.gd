@@ -113,7 +113,11 @@ func static_do_process(delta):
 #		self.cannot_dash = self.host.is_on_floor()
 	if not cannot_dash:
 		self.dash_cooldown_timer = max(0.0, dash_cooldown_timer - delta)
-
+	
+	if not self.can_enter_state():
+		self.host.velocity.y += GRAVITY * delta
+		self.host.move_and_slide()
+	
 func can_enter_state() -> bool:
 	return (
 		self.host.velocity != Vector2.ZERO or

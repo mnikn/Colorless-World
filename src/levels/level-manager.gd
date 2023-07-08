@@ -1,6 +1,6 @@
 extends Node2D
 
-const intial_scene = "res://src/levels/level-3.tscn"
+const intial_scene = "res://src/levels/level-6.tscn"
 var changing_color = false
 
 func _ready():
@@ -9,15 +9,19 @@ func _ready():
 	$Character.set_state("idle")
 	$UI/HBoxContainer/DashBar.max_value = $Character.get_node("StateManager/Move").DASH_COOLDOWN
 	$UI/HBoxContainer/DashBar.value = $Character.get_node("StateManager/Move").DASH_COOLDOWN - $Character.get_node("StateManager/Move").dash_cooldown_timer
-	$LevelContainer.add_child(ResourceManager.load_scene(intial_scene).instantiate())
+	var initial_level = ResourceManager.load_scene(intial_scene).instantiate()
+	$Character.position = initial_level.get_node("InitialCharacterPos").position
+	initial_level.set_collision_enabled(false)
+	$LevelContainer.add_child(initial_level)
 	
-	$Character.position = $LevelContainer.get_children()[0].get_node("InitialCharacterPos").position
 	for node in $LevelContainer.get_children():
 		node.connect("on_exit_entered", func (target_scene_path, area_node):
 			self.call_deferred("switch_level", target_scene_path, area_node)
 		)
 		node.connect("on_dead_entered", func ():
 			self.call_deferred("on_dead"))
+	await self.get_tree().create_timer(0.0).timeout
+	initial_level.set_collision_enabled(true)
 
 func tween_color_filter(target_val, duration = 0.5):
 	var tween = self.create_tween()

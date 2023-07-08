@@ -1,9 +1,15 @@
 extends Node
 
+#var colors = {
+#	"red": false,
+#	"green": false,
+#	"blue": false,
+#}
+
 var colors = {
-	"red": false,
-	"green": false,
-	"blue": false,
+	"red": true,
+	"green": true,
+	"blue": true,
 }
 
 var levels = {

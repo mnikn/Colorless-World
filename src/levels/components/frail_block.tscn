@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwcik6emr8hev"]
+
+[ext_resource type="Script" path="res://src/levels/components/frail_block.gd" id="1_67lji"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yb5jr"]
+size = Vector2(161, 68)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ogem"]
+size = Vector2(155, 64)
+
+[node name="FrailBlock" type="Area2D"]
+position = Vector2(792, 540)
+collision_layer = 256
+monitorable = false
+script = ExtResource("1_67lji")
+metadata/_edit_group_ = true
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(77.5, 20)
+shape = SubResource("RectangleShape2D_yb5jr")
+
+[node name="Skin" type="ColorRect" parent="."]
+offset_right = 155.0
+offset_bottom = 64.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Skin"]
+collision_layer = 16
+
+[node name="Collision" type="CollisionShape2D" parent="Skin/StaticBody2D"]
+position = Vector2(77.5, 32)
+shape = SubResource("RectangleShape2D_1ogem")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

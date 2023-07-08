@@ -19,7 +19,6 @@ use_parent_material = true
 
 [node name="Character" parent="." instance=ExtResource("2_hk1xs")]
 use_parent_material = true
-position = Vector2(1147, 588)
 character_path = "res://assets/character"
 metadata/_edit_group_ = true
 
