@@ -26,6 +26,7 @@ func _on_body_entered(body):
 	self.start_broken_count = true
 #	$Collision.disabled = true
 	$Collision.set_deferred("disabled", true)
+	var tween = self.create_tween()
 
 func start_broken():
 	self.is_broking = true

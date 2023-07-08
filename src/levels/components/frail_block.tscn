@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwcik6emr8hev"]
+[gd_scene load_steps=5 format=3 uid="uid://bwcik6emr8hev"]
 
 [ext_resource type="Script" path="res://src/levels/components/frail_block.gd" id="1_67lji"]
+[ext_resource type="Texture2D" uid="uid://dpdx6si7quhua" path="res://assets/frail_block.png" id="2_hdfxv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yb5jr"]
 size = Vector2(161, 68)
@@ -9,6 +10,7 @@ size = Vector2(161, 68)
 size = Vector2(155, 64)
 
 [node name="FrailBlock" type="Area2D"]
+use_parent_material = true
 position = Vector2(792, 540)
 collision_layer = 256
 monitorable = false
@@ -19,9 +21,27 @@ metadata/_edit_group_ = true
 position = Vector2(77.5, 20)
 shape = SubResource("RectangleShape2D_yb5jr")
 
-[node name="Skin" type="ColorRect" parent="."]
+[node name="SkinOld" type="ColorRect" parent="."]
+visible = false
 offset_right = 155.0
 offset_bottom = 64.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="SkinOld"]
+collision_layer = 16
+
+[node name="Collision" type="CollisionShape2D" parent="SkinOld/StaticBody2D"]
+position = Vector2(77.5, 32)
+shape = SubResource("RectangleShape2D_1ogem")
+
+[node name="Skin" type="NinePatchRect" parent="."]
+use_parent_material = true
+offset_right = 155.0
+offset_bottom = 64.0
+texture = ExtResource("2_hdfxv")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Skin"]
 collision_layer = 16
